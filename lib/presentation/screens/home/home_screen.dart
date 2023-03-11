@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:to_do_app/styles/app_text_style.dart';
-import 'package:to_do_app/themes/app_colors.dart';
+import 'package:to_do_app/presentation/screens/home/widgets/check_box_list_item.dart';
+import '../../../styles/app_text_style.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -11,16 +11,13 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('ToDo App', style: AppTextStyles.appTextStyle),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: CheckboxListTile(
-        value: true,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        tileColor: AppColor.tileColor,
-        title: Text('Title', style: AppTextStyles.lisTileTitleStyle,),
-        subtitle: Text('Subtitle', style: AppTextStyles.lisTileSubtitleStyle,),
-        onChanged: (v) {
-        }),
+      body: ListView.separated(
+        padding: const EdgeInsets.all(12),
+        itemCount: 6,
+        separatorBuilder:(context, index) => const SizedBox(height: 12),
+        itemBuilder:(context, index) {
+          return const CheckBoxListItem();
+        },
       ),
     );
   }
