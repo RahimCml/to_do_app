@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../../styles/app_text_style.dart';
+import '../../../../styles/app_text_styles.dart';
 import '../../../../themes/app_colors.dart';
 
 class CheckBoxListItem extends StatefulWidget {

@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:to_do_app/styles/app_border_styles.dart';
 import 'package:to_do_app/themes/app_colors.dart';
 
 class AppThemes {
   static ThemeData get appThemes => ThemeData(
-    primarySwatch: MaterialColor(0xff495579, colorMap)
+    primarySwatch: MaterialColor(0xff495579, colorMap),
+    inputDecorationTheme: InputDecorationTheme(
+      border: AppBorderStyle.inputBorder,
+      enabledBorder: AppBorderStyle.inputBorder
+    )
   );
 }
 
