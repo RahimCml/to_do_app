@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:to_do_app/presentation/screens/home/widgets/todo_list_view_widget.dart';
+import '../../viewmodels/check_box_list_item_model.dart';
+import 'check_box_list_item.dart';
 
 class FloatingActionBottomWidget extends StatefulWidget {
   const FloatingActionBottomWidget({super.key});
@@ -8,34 +11,24 @@ class FloatingActionBottomWidget extends StatefulWidget {
 }
 
 class _FloatingActionBottomWidgetState extends State<FloatingActionBottomWidget> {
-  late final TextEditingController titleController;
-  late final TextEditingController subtitleController;
+   late final TextEditingController titleController;
+   late final TextEditingController subtitleController;
+    List<CheckBoxListItemModel> taskList = [];
 
   @override
   void initState() {
     super.initState();
     titleController = TextEditingController();
     subtitleController = TextEditingController();
-  }
+    }
 
   @override
   void dispose() {
-    super.dispose();
     titleController.dispose();
     subtitleController.dispose();
+    super.dispose();
   }
 
-
-
-  @override
-  Widget build(BuildContext context) {
-    return FloatingActionButton(
-      child: const Icon(Icons.add_rounded),
-      onPressed: () {
-        triggerBottomSheet();
-        }
-      );
-  }
   void triggerBottomSheet() {
     showModalBottomSheet(
       context: context,
@@ -67,13 +60,30 @@ class _FloatingActionBottomWidgetState extends State<FloatingActionBottomWidget>
                     borderRadius: BorderRadius.circular(16),
                   )
                 ),
+                onPressed: () {
+                  taskList.add(CheckBoxListItemModel(titleController.text, subtitleController.text));
+                  titleController.clear();
+                  subtitleController.clear();
+                  Navigator.pop(context);
+                  setState(() {
+                  });
+                },
                 child: const Text('Add'),
-                onPressed: () {},
-                ),
+              ),
             )
           ],
         );
       }
+    );
+  }
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: TodoListViewWidget(taskList: taskList),
+      floatingActionButton: FloatingActionButton(
+      onPressed: triggerBottomSheet,
+      child: const Icon(Icons.add_rounded),
+      ),
     );
   }
 }
