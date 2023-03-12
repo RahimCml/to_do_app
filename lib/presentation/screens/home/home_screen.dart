@@ -26,5 +26,3 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-
-// 30 deqiqe ilk videoda
