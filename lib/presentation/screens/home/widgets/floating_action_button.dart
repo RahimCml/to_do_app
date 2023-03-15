@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:to_do_app/presentation/screens/home/widgets/todo_list_view_widget.dart';
 import '../../viewmodels/check_box_list_item_model.dart';
-import 'check_box_list_item.dart';
 
 class FloatingActionBottomWidget extends StatefulWidget {
   const FloatingActionBottomWidget({super.key});
@@ -13,7 +12,7 @@ class FloatingActionBottomWidget extends StatefulWidget {
 class _FloatingActionBottomWidgetState extends State<FloatingActionBottomWidget> {
    late final TextEditingController titleController;
    late final TextEditingController subtitleController;
-    List<CheckBoxListItemModel> taskList = [];
+    List<CheckBoxListItemModel> taskLists = [];
 
   @override
   void initState() {
@@ -61,7 +60,7 @@ class _FloatingActionBottomWidgetState extends State<FloatingActionBottomWidget>
                   )
                 ),
                 onPressed: () {
-                  taskList.add(CheckBoxListItemModel(titleController.text, subtitleController.text));
+                  taskLists.add(CheckBoxListItemModel(titleController.text, subtitleController.text));
                   titleController.clear();
                   subtitleController.clear();
                   Navigator.pop(context);
@@ -79,7 +78,7 @@ class _FloatingActionBottomWidgetState extends State<FloatingActionBottomWidget>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: TodoListViewWidget(taskList: taskList),
+      body: TodoListViewWidget(taskLists: taskLists),
       floatingActionButton: FloatingActionButton(
       onPressed: triggerBottomSheet,
       child: const Icon(Icons.add_rounded),

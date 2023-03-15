@@ -8,13 +8,15 @@ class AppTextStyles {
     color: AppColor.textColor,
     fontWeight: FontWeight.bold
   );
-  static TextStyle get lisTileTitleStyle => const TextStyle(
-    fontSize: 16,
+  static TextStyle lisTileTitleStyle(bool isChecked) => TextStyle(
+    fontSize: 22,
     color: AppColor.textColor,
-    fontWeight: FontWeight.bold
+    fontWeight: FontWeight.bold,
+    decoration: isChecked ? TextDecoration.lineThrough : TextDecoration.none
   );
-  static TextStyle get lisTileSubtitleStyle => const TextStyle(
+  static TextStyle lisTileSubtitleStyle(bool isChecked) =>  TextStyle(
     fontSize: 12,
     color: AppColor.textColor,
+    decoration: isChecked ? TextDecoration.lineThrough : TextDecoration.none
   );
 }
