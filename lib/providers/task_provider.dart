@@ -5,9 +5,18 @@ class TaskProvider with ChangeNotifier {
   List<CheckBoxListItemModel> taskList = [];
   List<CheckBoxListItemModel> removeTasks = [];
 
-  void addTask(CheckBoxListItemModel item) {
+  void addTask(item) {
     taskList.add(item);
-    print('addTask');
+    notifyListeners();
+  }
+
+  void removeTask() {
+    taskList.removeWhere((task) {
+      if(task.isChecked == true) {
+        removeTasks.add(task);
+      }
+      return task.isChecked == true;
+    });
     notifyListeners();
   }
 }
