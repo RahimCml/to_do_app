@@ -38,7 +38,7 @@ class _RemoveScreenState extends State<RemoveScreen> {
         ],
       ),
       body: ListView.separated(
-        padding: EdgeInsets.all(12),
+        padding: const EdgeInsets.all(12),
         itemCount: taskProvider.removeTasks.length,
         shrinkWrap: true,
         physics: const ClampingScrollPhysics(),
@@ -47,6 +47,7 @@ class _RemoveScreenState extends State<RemoveScreen> {
         ),
         itemBuilder: ((context, index) {
           CheckBoxListItemModel item = taskProvider.removeTasks[index];
+          return CheckBoxListItemRemove(item: item, index: index);
         }),
       ),
     );
