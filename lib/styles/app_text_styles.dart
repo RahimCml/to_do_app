@@ -20,7 +20,7 @@ class AppTextStyles {
     decoration: isChecked ? TextDecoration.lineThrough : TextDecoration.none
   );
   static TextStyle get appBarTitleStyle => const TextStyle(
-    fontSize: 20,
+    fontSize: 18,
     color: AppColor.textColor,
     fontWeight: FontWeight.bold
   );
