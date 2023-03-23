@@ -39,6 +39,11 @@ class _CheckBoxListItemState extends State<CheckBoxListItem> {
         ),
         onChanged: (value) {
           taskProvider.taskList[widget.index].isChecked = value!;
+          if(value) {
+            taskProvider.addChecksIndex(widget.index);
+          } else {
+            taskProvider.removeChecksIndex(widget.index);
+          }
           setState(() {});
         });
   }

@@ -22,7 +22,6 @@ class HomeScreen extends StatelessWidget {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      taskProvider.removeTask();
                       Navigator.push<void>(
                           context,
                           MaterialPageRoute(

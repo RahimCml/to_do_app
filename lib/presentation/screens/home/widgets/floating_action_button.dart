@@ -86,11 +86,18 @@ class _FloatingActionBottomWidgetState
 
   @override
   Widget build(BuildContext context) {
+    final taskProvider = Provider.of<TaskProvider>(context);
     return Scaffold(
       body: const TodoListViewWidget(),
       floatingActionButton: FloatingActionButton(
-        onPressed: triggerBottomSheet,
-        child: const Icon(Icons.add_rounded),
+        onPressed: () {
+          if(taskProvider.indexList.isEmpty) {
+            triggerBottomSheet();
+          }else {
+            taskProvider.removeTask();
+          }
+        },
+        child: taskProvider.indexList.isEmpty ? const Icon(Icons.add_rounded) : const Icon(Icons.delete),
       ),
     );
   }
