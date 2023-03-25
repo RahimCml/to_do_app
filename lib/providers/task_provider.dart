@@ -15,6 +15,7 @@ class TaskProvider with ChangeNotifier {
     taskList.removeWhere((task) {
       if(task.isChecked == true) {
         removeTasks.add(task);
+        indexList.clear();
       }
       return task.isChecked == true;
     });
@@ -28,7 +29,6 @@ class TaskProvider with ChangeNotifier {
 
   void removeChecksIndex(index) {
     indexList.remove(index);
-    print(indexList);
     notifyListeners();
   }
 }

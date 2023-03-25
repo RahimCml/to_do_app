@@ -21,22 +21,24 @@ class CheckBoxListItemRemove extends StatefulWidget {
 class _CheckBoxListItemRemoveState extends State<CheckBoxListItemRemove> {
   @override
   Widget build(BuildContext context) {
+    final taskProvider = Provider.of<TaskProvider>(context);
     return CheckboxListTile(
-        value: false,
+        value: taskProvider.removeTasks[widget.index].isChecked,
         controlAffinity: ListTileControlAffinity.leading,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         tileColor: AppColor.tileColor,
         title: Text(
           widget.item.title,
           style: AppTextStyles.lisTileTitleStyle(
-              false),
+              taskProvider.removeTasks[widget.index].isChecked),
         ),
         subtitle: Text(
           widget.item.subtitle,
           style: AppTextStyles.lisTileSubtitleStyle(
-              false),
+              taskProvider.removeTasks[widget.index].isChecked),
         ),
         onChanged: (value) {
+          taskProvider.removeTasks[widget.index].isChecked = value!;
           setState(() {});
         });
   }
