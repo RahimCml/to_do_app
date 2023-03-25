@@ -10,7 +10,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final taskProvider = Provider.of<TaskProvider>(context);
+    final taskProvider = context.watch<TaskProvider>();
     return Scaffold(
         appBar: AppBar(
           title: Text('ToDo App', style: AppTextStyles.appTextStyle),

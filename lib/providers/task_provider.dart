@@ -11,14 +11,20 @@ class TaskProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void removeTask() {
+  void removeTaskToTrash() {
     taskList.removeWhere((task) {
       if(task.isChecked == true) {
         removeTasks.add(task);
+        task.isChecked == false;
         indexList.clear();
       }
       return task.isChecked == true;
     });
+    notifyListeners();
+  }
+
+  void removeForever(value) {
+    removeTasks.removeAt(value);
     notifyListeners();
   }
 

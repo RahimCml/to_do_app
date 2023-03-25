@@ -22,24 +22,39 @@ class _CheckBoxListItemRemoveState extends State<CheckBoxListItemRemove> {
   @override
   Widget build(BuildContext context) {
     final taskProvider = Provider.of<TaskProvider>(context);
-    return CheckboxListTile(
-        value: taskProvider.removeTasks[widget.index].isChecked,
-        controlAffinity: ListTileControlAffinity.leading,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        tileColor: AppColor.tileColor,
-        title: Text(
-          widget.item.title,
-          style: AppTextStyles.lisTileTitleStyle(
-              taskProvider.removeTasks[widget.index].isChecked),
-        ),
-        subtitle: Text(
-          widget.item.subtitle,
-          style: AppTextStyles.lisTileSubtitleStyle(
-              taskProvider.removeTasks[widget.index].isChecked),
-        ),
-        onChanged: (value) {
-          taskProvider.removeTasks[widget.index].isChecked = value!;
-          setState(() {});
+    return Dismissible(
+      key: Key(taskProvider.removeTasks.length.toString()),
+      onDismissed: (DismissDirection direction) {
+        setState(() {
+          if(direction.name.toString() == 'startToEnd') {
+            taskProvider.removeForever(widget.index);
+          } else {
+            taskProvider.removeTasks[widget.index].isChecked = false;
+            CheckBoxListItemModel item = taskProvider.removeTasks[widget.index];
+            taskProvider.addTask(item);
+            taskProvider.removeTasks.removeAt(widget.index);
+          }
         });
+      },
+      child: CheckboxListTile(
+          value: taskProvider.removeTasks[widget.index].isChecked,
+          controlAffinity: ListTileControlAffinity.leading,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          tileColor: AppColor.tileColor,
+          title: Text(
+            widget.item.title,
+            style: AppTextStyles.lisTileTitleStyle(
+                false),
+          ),
+          subtitle: Text(
+            widget.item.subtitle,
+            style: AppTextStyles.lisTileSubtitleStyle(
+                false),
+          ),
+          onChanged: (value) {
+            taskProvider.removeTasks[widget.index].isChecked = value!;
+            setState(() {});
+          }),
+    );
   }
 }

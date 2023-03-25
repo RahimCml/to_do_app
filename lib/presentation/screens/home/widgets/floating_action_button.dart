@@ -94,7 +94,7 @@ class _FloatingActionBottomWidgetState
           if(taskProvider.indexList.isEmpty) {
             triggerBottomSheet();
           }else {
-            taskProvider.removeTask();
+            taskProvider.removeTaskToTrash();
           }
         },
         child: taskProvider.indexList.isEmpty ? const Icon(Icons.add_rounded) : const Icon(Icons.delete),
