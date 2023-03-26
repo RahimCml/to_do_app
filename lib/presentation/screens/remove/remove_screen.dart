@@ -50,6 +50,12 @@ class _RemoveScreenState extends State<RemoveScreen> {
           return CheckBoxListItemRemove(item: item, index: index);
         }),
       ),
+      floatingActionButton: taskProvider.removeTasks.isNotEmpty ? FloatingActionButton(
+        onPressed: () {
+            taskProvider.bringTasksBack();
+        },
+        child: const Icon(Icons.reply),
+      ) : const Text(''),
     );
   }
 }

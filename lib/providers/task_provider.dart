@@ -11,6 +11,17 @@ class TaskProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  void bringTasksBack() {
+    removeTasks.removeWhere((task) {
+      if(task.isChecked == true) {
+        taskList.add(task);
+        task.isChecked = false;
+      }
+      return task.isChecked == false;
+    });
+    notifyListeners();
+  }
+
   void removeTaskToTrash() {
     taskList.removeWhere((task) {
       if(task.isChecked == true) {
