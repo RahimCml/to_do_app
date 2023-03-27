@@ -27,7 +27,9 @@ class _RemoveScreenState extends State<RemoveScreen> {
           Padding(
             padding: const EdgeInsets.only(right: 12),
             child: GestureDetector(
-              onTap: () {},
+              onTap: () {
+                taskProvider.removeForeverAll();
+              },
               child: const Icon(
                 Icons.delete_forever_rounded,
                 color: Colors.white,

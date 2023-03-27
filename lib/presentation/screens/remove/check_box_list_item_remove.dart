@@ -27,7 +27,7 @@ class _CheckBoxListItemRemoveState extends State<CheckBoxListItemRemove> {
       onDismissed: (DismissDirection direction) {
         setState(() {
           if(direction.name.toString() == 'startToEnd') {
-            taskProvider.removeForever(widget.index);
+            taskProvider.removeForeverAt(widget.index);
           } else {
             taskProvider.removeTasks[widget.index].isChecked = false;
             CheckBoxListItemModel item = taskProvider.removeTasks[widget.index];

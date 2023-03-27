@@ -34,8 +34,13 @@ class TaskProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void removeForever(value) {
+  void removeForeverAt(value) {
     removeTasks.removeAt(value);
+    notifyListeners();
+  }
+
+    void removeForeverAll() {
+    removeTasks.clear();
     notifyListeners();
   }
 
