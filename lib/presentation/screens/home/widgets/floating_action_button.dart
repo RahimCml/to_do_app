@@ -66,13 +66,26 @@ class _FloatingActionBottomWidgetState
                         borderRadius: BorderRadius.circular(16),
                       )),
                       onPressed: () {
-                        taskProvider.addTask(CheckBoxListItemModel(
-                            titleController.text, subtitleController.text));
-                        titleController.clear();
-                        subtitleController.clear();
-                        Navigator.pop(context);
-                        setState(() {
-                        });
+                        if (titleController.text.isNotEmpty &&
+                            subtitleController.text.isNotEmpty) {
+                          taskProvider.addTask(CheckBoxListItemModel(
+                              titleController.text, subtitleController.text));
+                          titleController.clear();
+                          subtitleController.clear();
+                          Navigator.pop(context);
+                        } else {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) => AlertDialog(
+                              title: const Text('OPS!!!'),
+                              content: const Text('''Be sure that isn't the title or subtitle an empty'''),
+                              actions: <Widget>[
+                                TextButton(onPressed: () => Navigator.pop(context, 'OK'), child: const Text('OK'))
+                              ],
+                            ),
+                          );
+                        }
+                        setState(() {});
                       },
                       child: const Text('Add'),
                     );
@@ -91,13 +104,15 @@ class _FloatingActionBottomWidgetState
       body: const TodoListViewWidget(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          if(taskProvider.indexList.isEmpty) {
+          if (taskProvider.indexList.isEmpty) {
             triggerBottomSheet();
-          }else {
+          } else {
             taskProvider.removeTaskToTrash();
           }
         },
-        child: taskProvider.indexList.isEmpty ? const Icon(Icons.add_rounded) : const Icon(Icons.delete),
+        child: taskProvider.indexList.isEmpty
+            ? const Icon(Icons.add_rounded)
+            : const Icon(Icons.delete),
       ),
     );
   }
